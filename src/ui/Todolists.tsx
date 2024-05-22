@@ -1,11 +1,13 @@
-import React, {useEffect} from "react";
+import React, {ChangeEvent, useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {fetchTodolistsTC} from "./todolist-reducer";
+import {addTodolistTC, fetchTodolistsTC} from "./todolist-reducer";
 import Todolist from "./Todolist";
+import s from "./Todolists.module.css"
 
 
 const Todolists = () => {
 
+    const [title, setTitle] = useState("")
 
     const todolists = useSelector((state: any) => state.todolist)
     const tasks = useSelector((state: any) => state.tasks)
@@ -15,16 +17,33 @@ const Todolists = () => {
         dispatch(fetchTodolistsTC())
     }, [])
 
-    return <div>
-            <span>1111</span>
+    const changeTitle = (e: ChangeEvent<HTMLInputElement>) => {
+        setTitle(e.currentTarget.value)
+    }
+
+    const addTodolist = (title: string) => {
+        console.log("addTodo")
+        dispatch(addTodolistTC(title))
+    }
+
+
+
+    console.log(todolists)
+
+    return <div className={s.todolistsContainer}>
+            <h2> My todo: </h2>
+        <input title={title} onChange={changeTitle}/>
+
+        <button onClick={()=>addTodolist(title)} > Add Todolist </button>
+
             {
                 todolists &&
                 todolists.map((tl: any) => {
                     let allTodolistTasks = tasks ?  tasks[tl?.id] : []
-                    return <div key={tl.id}>
+                    return <div className={s.task} key={tl.id}>
                         <Todolist
                             key={tl.id}
-                            todolist={tl}
+                            todolists={tl}
                             tasks={allTodolistTasks}
                         />
                     </div>

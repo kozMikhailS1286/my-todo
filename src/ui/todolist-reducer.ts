@@ -31,3 +31,14 @@ export const fetchTodolistsTC = (): any => {
             })
     }
 }
+
+export const addTodolistAC = (title: string) => ({type: "ADD-TODOLIS", title} as const)
+
+export const addTodolistTC = (title: string): any => {
+    return (dispatch: any) => {
+        todolistApi.addTodolist(title)
+            .then((res) => {
+                dispatch(addTodolistAC(res.data.items))
+            })
+    }
+}

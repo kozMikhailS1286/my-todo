@@ -14,5 +14,8 @@ export const todolistApi = {
     },
     getTask(todilistId: string) {
         return instance.get(`/todo-lists/${todilistId}/tasks`)
+    },
+    addTodolist(title: string) {
+        return instance.post(`/todo-lists`, {title})
     }
 }
