@@ -42,3 +42,15 @@ export const addTodolistTC = (title: string): any => {
             })
     }
 }
+
+export const deleteTodolistAC = (todolistId: string) => ({type: "DELETE-TODOLIST", todolistId} as const)
+
+export const deleteTodolistTC = (todolistId: string): any => {
+    console.log("deleteTodolistTC")
+    return (dispatch: any) => {
+        todolistApi.deleteTodolist(todolistId)
+            .then((res) => {
+                dispatch(deleteTodolistAC(todolistId))
+            })
+    }
+}

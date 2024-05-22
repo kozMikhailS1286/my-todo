@@ -22,7 +22,6 @@ const Todolists = () => {
     }
 
     const addTodolist = (title: string) => {
-        console.log("addTodo")
         dispatch(addTodolistTC(title))
     }
 
