@@ -11,11 +11,14 @@ const Todolists = () => {
 
     const todolists = useSelector((state: any) => state.todolist)
     const tasks = useSelector((state: any) => state.tasks)
+
     const dispatch = useDispatch()
+
 
     useEffect(() => {
         dispatch(fetchTodolistsTC())
     }, [])
+
 
     const changeTitle = (e: ChangeEvent<HTMLInputElement>) => {
         setTitle(e.currentTarget.value)
@@ -26,29 +29,27 @@ const Todolists = () => {
     }
 
 
-
-    console.log(todolists)
-
     return <div className={s.todolistsContainer}>
-            <h2> My todo: </h2>
+        <h2> My todo: </h2>
         <input title={title} onChange={changeTitle}/>
 
-        <button onClick={()=>addTodolist(title)} > Add Todolist </button>
+        <button onClick={() => addTodolist(title)}> Add Todolist</button>
 
-            {
-                todolists &&
-                todolists.map((tl: any) => {
-                    let allTodolistTasks = tasks ?  tasks[tl?.id] : []
-                    return <div className={s.task} key={tl.id}>
-                        <Todolist
-                            key={tl.id}
-                            todolists={tl}
-                            tasks={allTodolistTasks}
-                        />
-                    </div>
-                })
-            }
-        </div>
+        {
+            todolists &&
+            todolists.map((tl: any, i: any) => {
+                let allTodolistTasks = tasks ? tasks[tl?.id] : []
+                return <div className={s.task} key={i}>
+                    <span>{tl.title}</span>
+                    <Todolist
+                        key={tl.id}
+                        todolists={tl}
+                        tasks={allTodolistTasks}
+                    />
+                </div>
+            })
+        }
+    </div>
 }
 
 export default Todolists;

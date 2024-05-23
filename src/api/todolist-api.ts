@@ -19,7 +19,6 @@ export const todolistApi = {
         return instance.post(`/todo-lists`, {title})
     },
     deleteTodolist(todolistId: string) {
-        console.log("deleteTodolist")
         return instance.delete(`/todo-lists/${todolistId}`)
     }
 }
