@@ -1,18 +1,21 @@
 import React, {ChangeEvent, useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {addTodolistTC, fetchTodolistsTC} from "./todolist-reducer";
+import {addTodolistTC, fetchTodolistsTC, TodolistsType} from "./todolist-reducer";
 import Todolist from "./Todolist";
 import s from "./Todolists.module.css"
+import {AppRootStateType, AppThunkDispatch} from "../api/store";
+import {TasksStateType} from "./task-reducer";
 
 
 const Todolists = () => {
 
     const [title, setTitle] = useState("")
 
-    const todolists = useSelector((state: any) => state.todolist)
-    const tasks = useSelector((state: any) => state.tasks)
+    const todolists = useSelector<AppRootStateType, Array<TodolistsType>>(state => state.todolist)
+    const tasks = useSelector<AppRootStateType, TasksStateType>(state => state.tasks)
+    console.log(tasks)
 
-    const dispatch = useDispatch()
+    const dispatch = useDispatch<AppThunkDispatch>()
 
 
     useEffect(() => {

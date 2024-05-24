@@ -1,8 +1,9 @@
 import React from "react";
 import s from "./Task.module.css";
+import {TaskType} from "./task-reducer";
 
 type Props = {
-    task: any
+    task: TaskType
 }
 const Task = (props: Props) => {
 

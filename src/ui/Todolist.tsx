@@ -1,16 +1,18 @@
 import React from 'react';
 import Task from "./Task";
-import {deleteTodolistTC} from "./todolist-reducer";
+import {deleteTodolistTC, TodolistsType} from "./todolist-reducer";
 import {useDispatch} from "react-redux";
+import {TaskType} from "./task-reducer";
+import {AppThunkDispatch} from "../api/store";
 
 type Props = {
-    todolists: any
-    tasks: any
+    todolists: TodolistsType
+    tasks: Array<TaskType>
 }
 
 
 const Todolist = (props: Props) => {
-    const dispatch = useDispatch()
+    const dispatch = useDispatch<AppThunkDispatch>()
 
     let tasksForTodolist = props?.tasks
     const deleteTodolist = (todolistId: string) => {
