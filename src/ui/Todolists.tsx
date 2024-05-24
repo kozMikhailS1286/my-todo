@@ -3,7 +3,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {addTodolistTC, fetchTodolistsTC, TodolistsType} from "./todolist-reducer";
 import Todolist from "./Todolist";
 import s from "./Todolists.module.css"
-import {AppRootStateType, AppThunkDispatch} from "../api/store";
+import {AppRootStateType, AppThunkDispatch, useAppDispatch} from "../api/store";
 import {TasksStateType} from "./task-reducer";
 
 
@@ -12,10 +12,9 @@ const Todolists = () => {
     const [title, setTitle] = useState("")
 
     const todolists = useSelector<AppRootStateType, Array<TodolistsType>>(state => state.todolist)
-    const tasks = useSelector<AppRootStateType, TasksStateType>(state => state.tasks)
-    console.log(tasks)
+    const tasks = useSelector<AppRootStateType, TasksStateType>((state): any => state.tasks)
 
-    const dispatch = useDispatch<AppThunkDispatch>()
+    const dispatch = useAppDispatch()
 
 
     useEffect(() => {
@@ -39,8 +38,7 @@ const Todolists = () => {
         <button onClick={() => addTodolist(title)}> Add Todolist</button>
 
         {
-            todolists &&
-            todolists.map((tl: any, i: any) => {
+            todolists?.map((tl: any, i: any) => {
                 let allTodolistTasks = tasks ? tasks[tl?.id] : []
                 return <div className={s.task} key={i}>
                     <span>{tl.title}</span>

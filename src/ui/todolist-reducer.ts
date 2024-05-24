@@ -9,8 +9,10 @@ export type TodolistsType = {
     order: number
 }
 
+export type AddTodolistActionType = ReturnType<typeof addTodolistAC>
+
 type ActionType = ReturnType<typeof setTodolistsAC>
-    | ReturnType<typeof addTodolistAC>
+    | AddTodolistActionType
     | ReturnType<typeof deleteTodolistAC>
 
 

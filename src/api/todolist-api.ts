@@ -20,5 +20,9 @@ export const todolistApi = {
     },
     deleteTodolist(todolistId: string) {
         return instance.delete(`/todo-lists/${todolistId}`)
+    },
+    addTask(todolistId: string, title: string) {
+        console.log("Add Task in Api")
+        return instance.post(`/todo-lists/${todolistId}/tasks`, {title})
     }
 }
