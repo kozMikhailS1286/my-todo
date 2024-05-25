@@ -1,9 +1,9 @@
 import React, {ChangeEvent, useEffect, useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
+import {useSelector} from "react-redux";
 import {addTodolistTC, fetchTodolistsTC, TodolistsType} from "./todolist-reducer";
 import Todolist from "./Todolist";
 import s from "./Todolists.module.css"
-import {AppRootStateType, AppThunkDispatch, useAppDispatch} from "../api/store";
+import {AppRootStateType, useAppDispatch} from "../api/store";
 import {TasksStateType} from "./task-reducer";
 
 
@@ -44,7 +44,7 @@ const Todolists = () => {
                     <span>{tl.title}</span>
                     <Todolist
                         key={tl.id}
-                        todolists={tl}
+                        todolist={tl}
                         tasks={allTodolistTasks}
                     />
                 </div>

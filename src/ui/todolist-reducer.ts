@@ -4,7 +4,7 @@ import {AppThunkDispatch} from "../api/store";
 
 export type TodolistsType = {
     id: string,
-    "title": string
+    title: string
     addedDate: string
     order: number
 }
