@@ -9,19 +9,17 @@ type Props = {
 const Task = (props: Props) => {
     const dispatch = useAppDispatch();
     const deleteTask = () => {
-        console.log("Del Task in Component")
         dispatch(deleteTaskTC(props.task.todoListId, props.task.id))
     }
-    console.log("task: " + props.task.id)
 
     return <div className={s.taskContainer}>
-    <div key={props.task.id}>
-        <br/>
-        <div>
-            <span> {props.task.title} </span>
-            <button onClick={()=>deleteTask()}> Delete Task </button>
+        <div key={props.task.id}>
+            <br/>
+            <div>
+                <span> {props.task.title} </span>
+                <button onClick={() => deleteTask()}> Delete Task</button>
+            </div>
         </div>
-    </div>
     </div>
 }
 

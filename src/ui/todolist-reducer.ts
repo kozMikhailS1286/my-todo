@@ -14,6 +14,7 @@ export type AddTodolistActionType = ReturnType<typeof addTodolistAC>
 type ActionType = ReturnType<typeof setTodolistsAC>
     | AddTodolistActionType
     | ReturnType<typeof deleteTodolistAC>
+    | ReturnType<typeof changeTodolistTitleAC>
 
 
 const initialState: Array<TodolistsType> = []
@@ -26,6 +27,8 @@ export const todolistsReducer = (state: Array<TodolistsType> = initialState, act
             return [{...action.todo}, ...state]
         case 'DELETE-TODOLIST':
             return state.filter((tl: any) => tl.id !== action.todolistId)
+        case 'CHANGE-TODOLIST-TITLE':
+            return state.map(tl => tl.id === action.todolistId ? {...tl, title: action.title} : tl)
         default:
             return state
     }
@@ -66,6 +69,17 @@ export const deleteTodolistTC = (todolistId: string) => {
         todolistApi.deleteTodolist(todolistId)
             .then((res) => {
                 dispatch(deleteTodolistAC(todolistId))
+            })
+    }
+}
+
+export const changeTodolistTitleAC = (todolistId: string, title: string) => ({type: "CHANGE-TODOLIST-TITLE", todolistId, title} as const)
+
+export const changeTodolistTitleTC = (todilistId: string, title: string) => {
+    return (dispatch: AppThunkDispatch) => {
+        todolistApi.changeTodolistTitle(todilistId, title)
+            .then((res) => {
+                dispatch(changeTodolistTitleAC(todilistId, title))
             })
     }
 }

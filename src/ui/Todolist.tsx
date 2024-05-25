@@ -32,13 +32,12 @@ const Todolist = (props: Props) => {
 
     return <div>
         <input onChange={changeTitle} title={title}/>
-        <button onClick={()=>deleteTodolist(props.todolist.id)}> Delete todolist </button>
-        <button onClick={()=>addTask(title, props.todolist.id)}> Add Task </button>
+        <button onClick={() => deleteTodolist(props.todolist.id)}> Delete todolist</button>
+        <button onClick={() => addTask(title, props.todolist.id)}> Add Task</button>
         {
             tasksForTodolist?.map((t) => <Task key={t.id}
-                                                    task={t}
-
-            />
+                                               task={t}
+                />
             )
         }
     </div>

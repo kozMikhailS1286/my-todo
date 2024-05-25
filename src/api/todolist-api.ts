@@ -25,7 +25,9 @@ export const todolistApi = {
         return instance.post(`/todo-lists/${todolistId}/tasks`, {title})
     },
     deleteTask(todolistId: string, taskId: string) {
-        console.log("Del Task In API")
         return instance.delete(`/todo-lists/${todolistId}/tasks/${taskId}`)
+    },
+    changeTodolistTitle(todolistId: string, title: string) {
+        return instance.put(`/todo-lists/${todolistId}`, {title})
     }
 }

@@ -67,7 +67,6 @@ export const deleteTaskAC = (todolistId: string, taskId: string) => ({type: "DEL
 
 
 export const deleteTaskTC = (todolistId: string, taskId: string) => {
-    console.log("Del Task in TC")
     return (dispatch: AppThunkDispatch) => {
         todolistApi.deleteTask(todolistId, taskId)
             .then((res) => {
