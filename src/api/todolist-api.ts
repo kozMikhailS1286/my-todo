@@ -29,5 +29,8 @@ export const todolistApi = {
     },
     changeTodolistTitle(todolistId: string, title: string) {
         return instance.put(`/todo-lists/${todolistId}`, {title})
+    },
+    changeTaskTitle(todolistId: string, taskId: string, model: any) {
+        return instance.put(`/todo-lists/${todolistId}/tasks/${taskId}`, model)
     }
 }

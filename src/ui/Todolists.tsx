@@ -38,7 +38,7 @@ const Todolists = () => {
     }
 
 
-    const setEditTitle = (todolistId: string, changeChangeTitle: string) => {
+    const setEditTodolistTitle = (todolistId: string, changeChangeTitle: string) => {
         setEditMode(false)
         dispatch(changeTodolistTitleTC(todolistId, changeChangeTitle))
     }
@@ -55,9 +55,9 @@ const Todolists = () => {
                 let allTodolistTasks = tasks ? tasks[tl?.id] : []
                 return <div className={s.task} key={i}>
                     {editMode && <input onChange={changeOnChangeTitle}
-                                        onBlur={()=>setEditTitle(tl.id, changeChangeTitle)}
+                                        onBlur={()=>setEditTodolistTitle(tl.id, changeChangeTitle)}
                     />}
-                    : <span>{tl.title}</span>
+                     <span>{tl.title}</span>
                     <button onClick={()=>setEditMode(true)} > Edit Todolist Title </button>
                     <Todolist
                         key={tl.id}
